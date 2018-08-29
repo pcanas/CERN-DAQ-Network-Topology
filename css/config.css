@@ -1,0 +1,123 @@
+/*
+    This are CSS variables to do a basic style of the app. You can modify the colors to your choice here
+*/
+
+:root {
+  /* Basics */
+  --app_bgcolor: #FFF;
+  --app_fontfamily: Calibri, Candara, Segoe, Segoe UI, Optima, Arial, sans-serif !important;
+  --loader_color: #3071a9;
+
+  /* Navigation bar */
+  --nav_bgcolor: #EEE;
+  --navelement_bgcolor: #EEE;
+  --navelement_hover_bgcolor: #e3e3e3;
+  --navelement_textcolor: #555;
+  --navelement_active_bgcolor: #3071a9;
+  --navelement_active_hover_bgcolor: #1e5f97;
+  --navelement_active_textcolor: #FFF;
+  --navslider_trackcolor: #3071a9;
+  --navslider_thumbcolor: #FFF;
+
+  /* Room menu */
+  --roommenuelement_bgcolor: #FFF;
+  --roommenuelement_textcolor: #222;
+  /* Room headers */
+  --roomheader_bgcolor: #3071a9;
+  --roomheader_textcolor: #FFF;
+  --roomheader_closecolor: #FFF;
+
+  /* Room background */
+  --roomsContainer_bgcolor: aliceblue;
+  --grid_bgcolor: #F0F0F0;
+
+  /* Show # devices button */
+  --showndevicesbutton_bgcolor: #EEE;
+  --showndevicesbutton_hover_bgcolor: #CCC;
+  --showndevicesbutton_textcolor: #222;
+
+  /* Rack details header */
+  --rackdetailsheader_bgcolor: #3071a9;
+  --rackdetailsheader_textcolor: #FFF;
+  --rackdetailsheader_closecolor: #000;
+
+  /* Devices list */
+  --device_odd_bgcolor: #FFF;
+  --device_odd_hover_bgcolor: rgba(0, 0, 0, 0.05);
+  --device_even_bgcolor: #E0E0E0;
+  --device_even_hover_bgcolor: #CCC;
+  --device_textcolor: #222;
+
+  /* Elevator */
+  --elevator_bgcolor: #CCCCCC;
+  --elevator_textcolor: #000;
+
+  /* Boxes */
+  --rack_bgcolor: #DDDDDD;
+  --rack_textcolor: #000;
+  --rack_hover_bgcolor: #BDBDBD;
+  --rack_hover_textcolor: #000;
+  --emptyrack_bgcolor: #696969;
+  --atlas-infr_bgcolor: #FFDEAD !important;
+  --atlas-infr_textcolor: #000 !important;
+  --atlas-infr_hover_bgcolor: #DFBE8D !important;
+  --atlas-infr_hover_textcolor: #000 !important;
+  --nw-core_bgcolor: #87cefa !important;
+  --nw-core_textcolor: #000 !important;
+  --nw-core_hover_bgcolor: #67AEDA !important;
+  --nw-core_hover_textcolor: #000 !important;
+  --atcn_bgcolor: #FAFAD2 !important;
+  --atcn_textcolor: #000 !important;
+  --atcn_hover_bgcolor: #DADAB2 !important;
+  --atcn_hover_textcolor: #000 !important;
+  --ros_bgcolor: #ffb993 !important;
+  --ros_textcolor: #000 !important;
+  --ros_hover_bgcolor: #DF9973 !important;
+  --ros_hover_textcolor: #000 !important;
+  --tpu_bgcolor: #9CED91 !important;
+  --tpu_textcolor: #000 !important;
+  --tpu_hover_bgcolor: #7CCD71 !important;
+  --tpu_hover_textcolor: #000 !important;
+  --sfo_bgcolor: #EDB0ED !important;
+  --sfo_textcolor: #000 !important;
+  --sfo_hover_bgcolor: #CD90CD !important;
+  --sfo_hover_textcolor: #000 !important;
+  --calib_bgcolor: #FFB6C1 !important;
+  --calib_textcolor: #000 !important;
+  --calib_hover_bgcolor: #DF96A1 !important;
+  --calib_hover_textcolor: #000 !important;
+  --garage_bgcolor: #C0D4FF !important;
+  --garage_textcolor: #000 !important;
+  --garage_hover_bgcolor: #A0B4DF !important;
+  --garage_hover_textcolor: #000 !important;
+  --tdaq-infr_bgcolor: #FD8375 !important;
+  --tdaq-infr_textcolor: #000 !important;
+  --tdaq-infr_hover_bgcolor: #DD6355 !important;
+  --tdaq-infr_hover_textcolor: #000 !important;
+  --empty_bgcolor: #F3F3F3 !important;
+  --empty_textcolor: #000 !important;
+  --empty_hover_bgcolor: #D3D3D3 !important;
+  --empty_hover_textcolor: #000 !important;
+}
+
+/* User-select: none makes that none of the text is selectable, which is very disturbing for dragging */
+html {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  cursor: default;
+  height: 100%
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--app_fontfamily, sans-serif);
+  background-color: var(--app_bgcolor, #FFF);
+}
+
+/* This style is applied when we are waiting for a response after a request */
+.loadingProcess {
+  cursor: wait !important;
+}

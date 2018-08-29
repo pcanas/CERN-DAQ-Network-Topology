@@ -1,0 +1,79 @@
+/*
+	CSS Rules to style the containers of the app and the room
+*/
+
+#readyContainer {
+  visibility: hidden;
+}
+
+#container {
+  position: relative;
+  margin: auto;
+  padding: 0;
+  transform-origin: top left; /* Set like this for the scaling */
+  height: 1000px
+}
+
+#roomsContainer {
+  position: relative;
+  margin: auto 5px auto 5px;
+  padding: 0;
+  width: 7615px;
+  height: 6000px;
+  border: 5px solid #000;
+  background-color: var(--roomsContainer_bgcolor, aliceblue);
+}
+
+.roomContainer {
+  background-color: var(--grid_bgcolor, #EEE);
+  margin: 80px;
+  visibility: hidden;
+  border: 3px solid black;
+  border-radius: 0 0 2% 2%;
+  position: absolute;
+  left: 0;
+  right: 0;
+}
+
+.racksContainer {
+  padding: 80px 20px; /* Padding added to fit the doors */
+  border-top: 3px solid black;
+}
+
+.roomHeader {
+  background-color: var(--roomheader_bgcolor, #444);
+  color: var(--roomheader_textcolor, #FFF);
+  padding: 5px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 34px;
+}
+
+.showNumberDevices {
+  position: absolute;
+  left: 90px;
+  top: 9px;
+  font-size: 16px;
+  font-weight: bold;
+  height: 32px;
+}
+
+.showNumberDevicesButton {
+  display: inline;
+  vertical-align: top;
+  color: var(--showndevicesbutton_textcolor, #222);
+  margin-left: 20px;
+  background-color: var(--showndevicesbutton_bgcolor, #EEE);
+  -moz-border-radius: 28px;
+  -webkit-border-radius: 28px;
+  border-radius: 28px;
+  border: 1px solid black;
+  display: inline-block;
+  cursor: pointer;
+  padding: 5px 19px;
+  width: 170px;
+}
+
+.showNumberDevicesButton:hover {
+  background-color: var(--showndevicesbutton_hover_bgcolor, #CCC);
+}

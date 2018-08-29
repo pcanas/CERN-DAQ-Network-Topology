@@ -1,0 +1,63 @@
+/*
+  CSS Rules to style the rack details box.
+*/
+
+.rackDetailsHeader {
+  cursor: grab;
+  cursor: -webkit-grab;
+  border-bottom: 2px solid #000;
+  border-top: 2px solid #000;
+  text-align: center;
+  padding: 5px 0px;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.rackDetailsHeaderColor {
+  background-color: var(--rackdetailsheader_bgcolor, #3071a9);
+  color: var(--rackdetailsheader_textcolor, #FFF);
+}
+
+.rackDetailsDevice {
+  height: 30px;
+  cursor: pointer;
+  background-color: var(--device_odd_bgcolor, #FFF);
+  color: var(--device_textcolor, #444);
+}
+
+.rackDetailsDevice:hover {
+  background-color: var(--device_odd_hover_bgcolor, rgba(0, 0, 0, 0.05));
+}
+
+.rackDetailsDevice:nth-of-type(2n) {
+  background-color: var(--device_even_bgcolor, #E0E0E0);
+}
+
+.rackDetailsDevice:nth-of-type(2n):hover {
+  background-color: var(--device_even_hover_bgcolor, #CCC);
+}
+
+.rackDetailsDeviceText {
+  padding: 5px 0px;
+  font-weight: bold;
+}
+
+.rackDetailsDeviceRackUnit {
+  position: absolute;
+  right: 5px;
+  font-size: 12px;
+}
+
+.rackDetails {
+  background-color: #FFFFFF;
+  width: 230px;
+  border-left: 2px solid #000;
+  border-right: 2px solid #000;
+  border-bottom: 2px solid #000;
+  outline: 1px solid transparent;  /* This is added as a solution for: draggable element leaving weird traces in Chrome */
+  text-align: center;
+  vertical-align: top;
+  overflow: hidden; /* This is added to not see the background color that is outside because of the rounded corners */
+  position: absolute;
+  z-index: 15;
+}

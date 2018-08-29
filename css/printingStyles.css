@@ -1,0 +1,52 @@
+/*
+  Styles for printing purposes. For Chrome it works good, not with Firefox.
+*/
+
+@media print and (color) {
+  * {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+    color-adjust: exact;
+  }
+}
+
+body {
+  margin: 0 10px !important;
+}
+
+#container {
+  transform: scale(0.3) !important;
+}
+
+#navigationBar {
+  visibility: hidden !important;
+  height: 80px !important;
+}
+
+#navigationBar::after {
+  content: "DAQ Net Vision" !important;
+  visibility: visible !important;
+  position: relative !important;
+  top: -70px !important;
+  font-weight: bold !important;
+  font-size: 35px !important;
+}
+
+/* This part is hardcoded for 4 rooms, in case there are more added this should be fixed */
+#roomMenu {
+  display: block !important;
+  margin: 40px auto 50px auto !important;
+  width: 6000px !important;
+}
+
+.room-menu-element {
+  height: 180px !important;
+  width: 700px !important;
+  margin: 0 70px !important;
+  border: 10px dashed black !important;
+  vertical-align: top !important;
+}
+
+.room-menu-element-text {
+  font-size: 96px !important;
+}

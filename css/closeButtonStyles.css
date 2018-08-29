@@ -1,0 +1,55 @@
+/*
+  CSS Rules to style the close button.
+*/
+
+.close {
+  position: absolute;
+  opacity: 0.85;
+  border-radius: 5px;
+}
+
+.roomHeaderClose {
+  right: 16px;
+  top: 12px;
+  width: 24px;
+  height: 24px;
+}
+
+.rackDetailsHeaderClose {
+  right: 5px;
+  top: 5px;
+  width: 18px;
+  height: 18px;
+}
+
+.close:hover {
+  cursor: pointer;
+  opacity: 1;
+}
+
+.close:before, .close:after {
+  position: absolute;
+  content: ' ';
+}
+
+.roomHeaderClose:before, .roomHeaderClose:after {
+  left: 10px;
+  height: 24px;
+  width: 3px;
+  background-color: var(--roomheader_closecolor, #000);
+}
+
+.rackDetailsHeaderClose:before, .rackDetailsHeaderClose:after {
+  left: 6px;
+  height: 18px;
+  width: 3px;
+  background-color: var(--rackdetailsheader_closecolor, #000);
+}
+
+.close:before {
+  transform: rotate(45deg);
+}
+
+.close:after {
+  transform: rotate(-45deg);
+}

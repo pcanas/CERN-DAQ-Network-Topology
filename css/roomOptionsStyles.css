@@ -1,0 +1,102 @@
+/*
+  CSS Rules to style the elements of the rooms (doors, walls, elevator...).
+*/
+
+.arc-door {
+  fill: var(--grid_bgcolor, #EEE);
+}
+
+.entrance-door {
+  stroke: var(--grid_bgcolor, #EEE);
+  stroke-width: 10;
+}
+
+.arc-door-container, .entrance-door-container, .wall-container {
+  position: absolute;
+}
+
+.elevator {
+  position: absolute;
+  margin: 4px;
+  padding: 0;
+  text-align: center;
+  border: 2px solid black;
+  border-radius: 20%;
+  background-color: var(--elevator_bgcolor, #ff9973);
+  color: var(--elevator_textcolor, #000);
+}
+
+.elevatorText {
+  position: relative;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.wall {
+  stroke-width: 5;
+  stroke: #000;
+}
+
+.stairs {
+  position: absolute;
+  margin: 4px;
+  padding: 0;
+  border-left: 4px solid black;
+  border-right: 4px solid black;
+  background-color: transparent
+}
+
+.stair {
+  border-bottom: 4px solid black;
+}
+
+.arrow {
+  display: block;
+  position: absolute;
+  padding-top: 79px;
+  text-align: center;
+}
+
+.arrow-down {
+  top: -20px;
+}
+
+.arrow-up {
+  bottom: -5px;
+  transform: rotateX(180deg);
+}
+
+.arrow::before {
+  position: absolute;
+  top: 0px;
+  left: 50%;
+  margin-left: -1px;
+  width: 3px;
+  height: 90px;
+  background: #000;
+  content: ' ';
+}
+
+.arrowhead {
+  display: block;
+  margin: 0 auto;
+  width: 10px;
+  height: 38px;
+}
+
+.arrowhead:after {
+  content: '';
+  display: block;
+  margin: 0;
+  padding: 0;
+  width: 8px;
+  height: 8px;
+  border-top: 3px solid #000;
+  border-right: 3px solid #000;
+  behavior: url(-ms-transform.htc);
+  -moz-transform: rotate(135deg);
+  -webkit-transform: rotate(135deg);
+  -o-transform: rotate(135deg);
+  -ms-transform: rotate(135deg);
+  transform: rotate(135deg);
+}

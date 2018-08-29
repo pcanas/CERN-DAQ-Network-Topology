@@ -1,0 +1,36 @@
+/*
+  CSS Rules to style the connections.
+*/
+
+/* pointer-events: none is used to go through the path element (only detects the actual line), so that it does not block the rest of the elements */
+.jtk-connector {
+  z-index: 16;
+  pointer-events: none;
+}
+
+.jtk-hover {
+  cursor: pointer;
+}
+
+.jtk-connector.jtk-hover path {
+  stroke-width: 6;
+}
+
+.jtk-endpoint.device-endpoint {
+  z-index: 17;
+}
+
+.jtk-endpoint.room-endpoint {
+  z-index: 14;
+}
+
+.jtk-overlay {
+  text-align: center;
+  z-index: 18;
+  padding: 5px;
+  background-color: #FFF;
+  outline: 2px solid black;
+  font-size: 14px;
+  font-weight: bold;
+  min-width: 100px; /* Added this as some labels where wrapping the text for no reason */
+}

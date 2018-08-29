@@ -1,0 +1,76 @@
+/*
+  CSS Rules to style the navigation bar.
+*/
+
+#navigationBar {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  z-index: 99;
+}
+
+#navigationBar ul {
+  list-style-type: none; /* We dont want a list-item marker for this list/menu */
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: var(--nav_bgcolor, #EEE);
+}
+
+#navigationBar li span {
+  background-color: var(--navelement_bgcolor, #EEE);
+  float: left;
+  display: block;
+  color: var(--navelement_textcolor, #555);
+  text-align: center;
+  padding: 14px 30px;
+  margin: 0 10px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+#navigationBar li span:hover:not(.active) {
+  background-color: var(--navelement_hover_bgcolor, #e3e3e3);
+}
+
+#navigationBar li span.active {
+  color: var(--navelement_active_textcolor, #FFF);
+  background-color: var(--navelement_active_bgcolor, #3071a9);
+}
+
+#navigationBar li span.active:hover {
+  background-color: var(--navelement_active_hover_bgcolor, #1e5f97);
+}
+
+#navigationBar li span:active {
+  position: relative;
+  top: 2px;
+}
+
+#navigationBar .deviceSearchContainer {
+  float: right;
+  padding: 10px 35px 10px 0;
+  width: 435px;
+}
+
+#deviceSearchInput {
+  vertical-align: bottom;
+  width: 385px;
+  padding-left: 10px;
+}
+
+#autocompleteNumberResultsText div {
+  cursor: default;
+  border-color: #c5c5c5;
+  border-top-color: transparent;
+  background-color: white;
+  font-size: 14px;
+  color: #206199;
+}
+
+#navigationBar .sliderContainer {
+  float: right;
+  padding: 10px 45px 10px 0;
+}

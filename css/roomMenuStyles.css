@@ -1,0 +1,25 @@
+/*
+  CSS Rules to style the room menu.
+*/
+
+#roomMenu {
+  display: flex;
+  justify-content: space-around; /* We want the elements to space equally around all the document */
+  margin: 100px auto 80px auto;
+}
+
+.room-menu-element {
+  z-index: 13;
+  border: 2px dashed black;
+  border-radius: 8%;
+  display: inline-block;
+  padding: 10px 25px 60px 25px;
+  background-color: var(--roommenuelement_bgcolor, #FFF);
+  color: var(--roommenuelement_textcolor, #000);
+  text-align: center;
+}
+
+.room-menu-element-text {
+  font-size: 34px;
+  font-weight: bold;
+}

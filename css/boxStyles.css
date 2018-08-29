@@ -1,0 +1,153 @@
+/*
+  CSS Rules to style boxes (racks, not important racks, and corridor). If a new type of rack shall be added, it should be here.
+*/
+
+.box {
+  margin: 0 4px;
+  padding: 0;
+  display: inline-block;
+  text-align: center;
+  vertical-align: top;
+  border: 2px solid black;
+  border-radius: 20%;
+}
+
+.rackHeader {
+  border-bottom: 2px solid black;
+}
+
+.rackHeaderText {
+  margin: auto;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.rackContent {
+  padding-top: 5px;
+  font-size: 17px;
+}
+
+.nDevicesText {
+  font-size: 15px;
+  padding-top: 5px;
+}
+
+.rack {
+  background-color: var(--rack_bgcolor, #DDDDDD);
+  color: var(--rack_textcolor, #000);
+}
+
+.rack:hover {
+  cursor: pointer;
+  background-color: var(--rack_hover_bgcolor, #BDBDBD);
+  color: var(--rack_hover_textcolor, #000);
+}
+
+.emptyRack {
+  background-color: var(--emptyrack_bgcolor, #696969);
+}
+
+.corridor {
+  background-color: var(--grid_bgcolor, #EEE);
+  border-color: var(--grid_bgcolor, #EEE);
+}
+
+.atlas-infr {
+  background-color: var(--atlas-infr_bgcolor, #FFDEAD);
+  color: var(--atlas-infr_textcolor, #000);
+}
+
+.rack.atlas-infr:hover {
+  background-color: var(--atlas-infr_hover_bgcolor, #DFBE8D);
+  color: var(--atlas-infr_hover_textcolor, #000);
+}
+
+.nw-core {
+  background-color: var(--nw-core_bgcolor, #87cefa);
+  color: var(--nw-core_textcolor, #000);
+}
+
+.rack.nw-core:hover {
+  background-color: var(--nw-core_hover_bgcolor, #67AEDA);
+  color: var(--nw-core_hover_textcolor, #000);
+}
+
+.atcn {
+  background-color: var(--atcn_bgcolor, #FAFAD2);
+  color: var(--atcn_textcolor, #000);
+}
+
+.rack.atcn:hover {
+  background-color: var(--atcn_hover_bgcolor, #DADAB2);
+  color: var(--atcn_hover_textcolor, #000);
+}
+
+.ros {
+  background-color: var(--ros_bgcolor, #ffb993);
+  color: var(--ros_textcolor, #000);
+}
+
+.rack.ros:hover {
+  background-color: var(--ros_hover_bgcolor, #DF9973);
+  color: var(--ros_hover_textcolor, #000);
+}
+
+.tpu {
+  background-color: var(--tpu_bgcolor, #9CED91);
+  color: var(--tpu_textcolor, #000);
+}
+
+.rack.tpu:hover {
+  background-color: var(--tpu_hover_bgcolor, #7CCD71);
+  color: var(--tpu_hover_textcolor, #000);
+}
+
+.sfo {
+  background-color: var(--sfo_bgcolor, #EDB0ED);
+  color: var(--sfo_textcolor, #000);
+}
+
+.rack.sfo:hover {
+  background-color: var(--sfo_hover_bgcolor, #CD90CD);
+  color: var(--sfo_hover_textcolor, #000);
+}
+
+.calib {
+  background-color: var(--calib_bgcolor, #FFB6C1);
+  color: var(--calib_textcolor, #000);
+}
+
+.rack.calib:hover {
+  background-color: var(--calib_hover_bgcolor, #DF96A1);
+  color: var(--calib_hover_textcolor, #000);
+}
+
+.garage {
+  background-color: var(--garage_bgcolor, #C0D4FF);
+  color: var(--garage_textcolor, #000);
+}
+
+.rack.garage:hover {
+  background-color: var(--garage_hover_bgcolor, #A0B4DF);
+  color: var(--garage_hover_textcolor, #000);
+}
+
+.tdaq-infr {
+  background-color: var(--tdaq-infr_bgcolor, #FD8375);
+  color: var(--tdaq-infr_textcolor, #000);
+}
+
+.rack.tdaq-infr:hover {
+  background-color: var(--tdaq-infr_hover_bgcolor, #DD6355);
+  color: var(--tdaq-infr_hover_textcolor, #000);
+}
+
+.empty {
+  background-color: var(--empty_bgcolor, #F3F3F3);
+  color: var(--empty_textcolor, #000);
+}
+
+.rack.empty:hover {
+  background-color: var(--empty_hover_bgcolor, #D3D3D3);
+  color: var(--empty_hover_textcolor, #000);
+}
