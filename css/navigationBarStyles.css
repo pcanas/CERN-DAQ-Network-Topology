@@ -4,10 +4,10 @@
 
 #navigationBar {
   position: fixed;
-  left: 0;
-  top: 0;
   width: 100%;
   z-index: 99;
+  left: 0;
+  top: 0;
 }
 
 #navigationBar ul {
@@ -16,6 +16,7 @@
   padding: 0;
   overflow: hidden;
   background-color: var(--nav_bgcolor, #EEE);
+  border-bottom: 5px solid #FFF;
 }
 
 #navigationBar li span {
@@ -53,6 +54,7 @@
   float: right;
   padding: 10px 35px 10px 0;
   width: 435px;
+  margin-right: 100px;
 }
 
 #deviceSearchInput {

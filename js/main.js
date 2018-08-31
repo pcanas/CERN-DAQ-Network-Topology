@@ -4,7 +4,7 @@ let dragging = false;
 let draggingCounter = 0; // This variable will be used to skip the repainting in the first dragging iteration
 let devicesInfo = {};
 let autosearchDevicesInfo = [];
-
+let currentScale = 1;
 
 /*
     Make a call to the database to get the racks of the room.
@@ -89,11 +89,16 @@ function fillDevicesInfo(url) {
            Although the devices arrays are not completely full, setting this conditional will considerably reduce the time to
            load the page while it also gives the necessary time for the devices arrays to get filled before the user performs
            any action that requires them.
+
+           We perform the second checking so that this operation is only done once
         */
-        if (data.meta.limit + data.meta.offset > data.meta.total_count / 2) {
+        if ((data.meta.limit + data.meta.offset > data.meta.total_count / 2) &&
+            (window.getComputedStyle(document.getElementById("readyContainer"), null).getPropertyValue("visibility") === "hidden")) {
           document.getElementById("onLoadContainer").style.display = "none";
           document.getElementsByTagName("html")[0].classList.remove('loadingProcess');
           document.getElementById("readyContainer").style.visibility = "visible";
+          setPropertyDraggableToElement ($("#roomMenu"), false);
+          setPanzoom();
         }
       } else {
         setDeviceAutocompleteSearch();
@@ -151,7 +156,6 @@ function setDeviceAutocompleteSearch() {
 document.addEventListener("DOMContentLoaded", function(event) {
 
   window.scrollTo(0, 0);
-  applyZoomToRepresentation(0.55);
 
   fillRacksRoom();
 

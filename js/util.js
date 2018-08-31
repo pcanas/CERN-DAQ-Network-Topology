@@ -13,37 +13,40 @@ function addLineHighlightHoverFunction(elementId) {
 
 
 /*
-  When moving the mouse wheel with the control key pressed, we will
-  prevent the zooming event and we will move our own zoom slidebar.
+  Prevents browser zooming
 */
 window.addEventListener("wheel", function(e) {
-
   if (e.ctrlKey) {
     e.preventDefault();
-
-    if (window.getComputedStyle(document.getElementById("readyContainer"), null).getPropertyValue("visibility") === "visible") {
-      let sliderValue = parseFloat(document.getElementById("zoomSlider").value);
-      let sliderMinValue = parseFloat(document.getElementById("zoomSlider").min);
-      let sliderMaxValue = parseFloat(document.getElementById("zoomSlider").max);
-      let sliderStep = parseFloat(document.getElementById("zoomSlider").step);
-      if (e.deltaY > 0) {
-        if (sliderValue > sliderMinValue) {
-          applyZoomToRepresentation(sliderValue - sliderStep);
-        }
-      } else {
-        if (sliderValue < sliderMaxValue) {
-          applyZoomToRepresentation(sliderValue + sliderStep);
-        }
-      }
-    }
-
   }
 });
 
 
-function applyZoomToRepresentation(scale) {
-  document.getElementById("container").style.transform = "scale(" + scale + ")";
-  document.getElementById("zoomSlider").value = scale;
+/*
+    Sets panzoom for container and the focal zooming functionality
+*/
+function setPanzoom () {
+  let $panzoom = $("#container").panzoom({
+    minScale: 0.25,
+    maxScale: 1.3,
+    rangeStep: 0.05,
+    which: 3,
+  });
+
+  // Initial zooming of the app.
+  $panzoom.panzoom("zoom", true, {increment: 0.65, animate:false, focal:{clientX:0,clientY:0}});
+
+  // Function that determines if the user scrolled for zoom in or zoom out, and performs such zooming where the cursor is
+  $panzoom.parent().on('mousewheel.focal', function( e ) {
+                          e.preventDefault();
+                          var delta = e.delta || e.originalEvent.wheelDelta;
+                          var zoomOut = delta ? delta < 0 : e.originalEvent.deltaY > 0;
+                          $panzoom.panzoom('zoom', zoomOut, {
+                            increment: 0.05,
+                            animate: false,
+                            focal: e
+                          });
+                        });
 }
 
 
@@ -59,38 +62,40 @@ function formatNameForJQuery(elementId) {
 /*
   jQuery dragable function. I am generalizing this function for both rooms and rack details boxes, but it is not assured that ui positioning works for every element.
     - We will cancel the dragging if we are in a rack details device.
-    - The movement is constraint within the rooms container element
+    - There is a constraint in the top so that it does not collide with the navigation bar
     - In the start, we will set a flag to true so that we do not trigger click events while dragging.
       We also set the ui positions to 0 so that we do not make a jump when start dragging the objects (only occurs when scale !== 1)
     - While dragging, we will calculate the new position based on the scale we have, and we will repaint all the connections.
     - We are skiping the first repainting due to a bug in the painting process. That is why 'draggingCounter' is used.
+  The flag is just a boolean variable, to differentiate between room menu and room dragging, and rack details window dragging.
+  BUG: room dragging performs an offset just when you start the dragging, if the room is scaled
 */
-function setPropertyDraggableToElement(element) {
+function setPropertyDraggableToElement(element, flag) {
   element.draggable({
     cancel: ".rackDetailsDeviceList",
-    containment: "#roomsContainer",
-    start: function(e, ui) {
-      if (!e.ctrlKey) {
+    start: function(event, ui) {
+      if (flag){
         ui.position.left = 0;
         ui.position.top = 0;
-        draggingCounter = 0;
-        dragging = true;
       }
+      draggingCounter = 0;
+      dragging = true;
     },
-    drag: function(e, ui) {
-      if (!e.ctrlKey) {
-        let containerScale = document.getElementById("zoomSlider").value;
-        let changeLeft = ui.position.left - ui.originalPosition.left;
-        let newLeft = ui.originalPosition.left + changeLeft / containerScale;
-        let changeTop = ui.position.top - ui.originalPosition.top;
-        let newTop = ui.originalPosition.top + changeTop / containerScale;
-        ui.position.left = newLeft;
-        ui.position.top = newTop;
+    drag: function(event, ui) {
+      let matrix = $("#container").panzoom("getMatrix");
+      let currentScale = $("#container").panzoom("getMatrix")[0];
+      $("#container").panzoom("setMatrix", [ 1, matrix[1], matrix[2], 1, matrix[4], matrix[5]]);
+      let changeLeft = ui.position.left - ui.originalPosition.left;
+      let newLeft = ui.originalPosition.left + changeLeft / currentScale;
+      let changeTop = ui.position.top - ui.originalPosition.top;
+      let newTop = ui.originalPosition.top + changeTop / currentScale;
+      ui.position.left = newLeft;
+      ui.position.top = newTop;
 
-        if (draggingCounter > 0) jsPlumb.repaintEverything();
+      if (draggingCounter > 0) jsPlumb.repaintEverything();
 
-        draggingCounter++;
-      }
+      draggingCounter++;
+      $("#container").panzoom("setMatrix", matrix);
     },
     stop: function() {
       jsPlumb.repaintEverything();
@@ -184,34 +189,4 @@ function displayNumberDevices(roomId, racks) {
 function calculateRandomColor() {
   let h = Math.floor(Math.random() * 361);
   return "hsl(" + h + ", 100%, 38%)";
-}
-
-
-var clicked = false, clickY, clickX;
-$("#roomsContainer").on({
-    'mousemove': function(e) {
-        if (clicked && e.ctrlKey){
-          updateScrollPos(e);
-        } else {
-          clicked = false;
-          $("#roomsContainer").css('cursor', 'auto');
-        }
-    },
-    'mousedown': function(e) {
-        if (e.ctrlKey){
-          clicked = true;
-          $("#roomsContainer").css('cursor', 'crosshair');
-          clickY = e.pageY;
-          clickX = e.pageX;
-        }
-    },
-    'mouseup': function() {
-        clicked = false;
-        $("#roomsContainer").css('cursor', 'auto');
-    }
-});
-
-var updateScrollPos = function(e) {
-    $(window).scrollTop($(window).scrollTop() + (clickY - e.pageY));
-    $(window).scrollLeft($(window).scrollLeft() + (clickX - e.pageX));
 }

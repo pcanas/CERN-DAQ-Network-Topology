@@ -1,6 +1,9 @@
-// Generates or deletes connections based on the current status (if there is at least one active connection we will delete all of them)
-function toggleConnections(deviceId) {
-  if (!dragging) {
+/*
+  Generates or deletes connections based on the current status (if there is at least one active connection we will delete all of them)
+    - Parameter 'button' checks with which mouse button the mouseup event was fired. We only take into account left clicks (1)
+*/
+function toggleConnections(deviceId, button) {
+  if (!dragging && button==1) {
     let deviceIdLines = $(".line-" + deviceId, "#container");
     if (deviceIdLines.length === 0) {
       generateConnections(deviceId);

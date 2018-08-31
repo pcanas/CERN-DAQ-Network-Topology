@@ -1,3 +1,4 @@
+
 function appendMapElements(roomId, roomOptions, boxElement) {
   appendDoors(roomId, roomOptions);
   appendElevators(roomId, roomOptions, boxElement);

@@ -11,11 +11,7 @@ function createRoom(roomName, roomOptions, boxWidth, boxHeight, racksArray, room
   appendBoxes(roomId, roomOptions, racksArray, roomIndex);
 
   setUpRoomSizes(roomId, roomOptions.columns, roomOptions.rows, boxWidth, boxHeight);
-
-  let containerScale = document.getElementById("zoomSlider").value;
-  applyZoomToRepresentation(1);
-  appendMapElements(roomId, roomOptions, $(".box", "#" + roomId))
-  applyZoomToRepresentation(containerScale);
+  appendMapElements(roomId, roomOptions, $(".box", "#" + roomId));
 
   /*
     Some browsers automatically modify elements sizes in a resize, so we add this listener to prevent weird behaviour
@@ -24,15 +20,18 @@ function createRoom(roomName, roomOptions, boxWidth, boxHeight, racksArray, room
     setUpRoomSizes(roomId, roomOptions.columns, roomOptions.rows, boxWidth, boxHeight);
   });
 
-  setPropertyDraggableToElement($("#" + roomId));
+  setPropertyDraggableToElement($("#" + roomId), false);
 };
 
 
 // Button in the top navigation bar
 function appendNavigationBarButton(roomId, roomName) {
   $("#navigationBar>ul").append("<li>" +
-                                  "<span id='navigation-button-" + roomId + "' onmouseup=\"toggleRoomVisibility('" + roomId + "')\">" + roomName + "</span>" +
+                                  "<span id='navigation-button-" + roomId + "'>" + roomName + "</span>" +
                                 "</li>");
+  document.getElementById("navigation-button-"+roomId).addEventListener("mouseup", function(e){
+    toggleRoomVisibility(roomId, e.which);
+  });
 }
 
 
@@ -76,7 +75,7 @@ function appendRoomContainer(roomId, roomName, roomIndex) {
   let infoButton = "<div class='infoContainer'><span class='infoIcon'>&#9432;<div class='tooltip'>" + legendElement + "</div></span></div>";
 
   // Close button
-  let closeButton = "<div class='close roomHeaderClose' onmouseup=\"toggleRoomVisibility('" + roomId + "')\"></div>";
+  let closeButton = "<div id='close-"+roomId+"' class='close roomHeaderClose'></div>";
 
   // Room header, containing all the previous elements
   let roomHeader = "<div class='roomHeader'>" + showNumberDevices + roomName + infoButton + closeButton + "</div>";
@@ -87,6 +86,10 @@ function appendRoomContainer(roomId, roomName, roomIndex) {
   $("#roomsContainer").append("<div class='roomContainer' id='" + roomId + "' style='z-index: " + roomIndex + "'>" +
                                 roomHeader + racksContainer +
                               "</div>");
+
+  document.getElementById("close-"+roomId).addEventListener("mouseup", function(e){
+    toggleRoomVisibility(roomId, e.which);
+  });
 }
 
 
@@ -168,7 +171,7 @@ function numberToRackCoordinate(n) {
 function insertRack(racksContainerElement, rack, roomIndex) {
   let numberDevices = "<div id='nDevices-" + rack.name + "' class='nDevicesText'></div>";
   racksContainerElement.append( "<div class='box rack " + rack.type.toLowerCase().replace(/ /g, "-") + "' id='" + rack.name + "' data-rackId='" + rack.dbId + "'" +
-                                "onmouseup=\"toggleRackDetails('" + rack.name + "')\" style='z-index:" + roomIndex + ";'>" +
+                                "style='z-index:" + roomIndex + ";'>" +
                                   "<div class='rackHeader'>" +
                                     "<div class='rackHeaderText'>" + rack.name + "</div>" +
                                   "</div>" +
@@ -177,6 +180,9 @@ function insertRack(racksContainerElement, rack, roomIndex) {
                                   "</div>" +
                                 "</div>");
   addLineHighlightHoverFunction(rack.name);
+  document.getElementById(rack.name).addEventListener("mouseup", function(e){
+    toggleRackDetails(rack.name, e.which);
+  });
 }
 
 

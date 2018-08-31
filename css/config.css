@@ -28,7 +28,6 @@
   --roomheader_closecolor: #FFF;
 
   /* Room background */
-  --roomsContainer_bgcolor: aliceblue;
   --grid_bgcolor: #F0F0F0;
 
   /* Show # devices button */
@@ -107,12 +106,16 @@ html {
   -ms-user-select: none;
   user-select: none;
   cursor: default;
-  height: 100%
+  height: 100%;
+  width: 100%;
 }
 
 body {
   margin: 0;
   padding: 0;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
   font-family: var(--app_fontfamily, sans-serif);
   background-color: var(--app_bgcolor, #FFF);
 }

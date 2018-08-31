@@ -3,9 +3,10 @@
     Function triggered when clicking in the navigation bar or in the room close button
       - If the room is hidden, we will make it visible and update our connections
       - Else, we will hide it and update our connections
+      - Parameter 'button' checks with which mouse button the mouseup event was fired. We only take into account left clicks (1)
 */
-function toggleRoomVisibility(roomId) {
-  if (!dragging && document.getElementById(roomId)) {
+function toggleRoomVisibility(roomId, button) {
+  if (!dragging && button==1 && document.getElementById(roomId)) {
     if (window.getComputedStyle(document.getElementById(roomId), null).getPropertyValue("visibility") === "hidden") {
       document.getElementById("navigation-button-" + roomId).classList.add("active");
       document.getElementById(roomId).style.visibility = "visible";

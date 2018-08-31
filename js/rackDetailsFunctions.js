@@ -3,9 +3,10 @@
     Function triggered when clicking in a rack or in the rack details close button
       - If the rack details window is created, we will delete it and update our connections
       - Else, we will create this rack details window and update our connections
+      - Parameter 'button' checks with which mouse button the mouseup event was fired. We only take into account left clicks (1)
 */
-function toggleRackDetails(rackId) {
-  if (!dragging) {
+function toggleRackDetails(rackId, button) {
+  if (!dragging && button==1) {
 
     if (!document.getElementById("details-" + rackId)) {
       addLoadingCursor();
@@ -53,14 +54,14 @@ function createRackDetails(roomId, rackId, devicesList) {
 
   setPositionRackDetails(rackIdElement, rackIdDetailsElement);
 
-  setPropertyDraggableToElement(rackIdDetailsElement);
+  setPropertyDraggableToElement(rackIdDetailsElement, true);
 }
 
 
 // Creates the rack details box for the selected rack
 function appendRackDetailsBox(roomId, rackId, rackIdElement, rackDetailsDeviceList) {
   let rackDetailsBoxHeader = "[" + roomId.replace(/_/g, " ") + "] [" + rackId + "]";
-  let rackDetailsCloseButton = "<div class='close rackDetailsHeaderClose' onmouseup=\"toggleRackDetails('" + rackId + "')\"></div>";
+  let rackDetailsCloseButton = "<div id='close-"+rackId+"' class='close rackDetailsHeaderClose'></div>";
   let rackType = document.getElementById(rackId).classList[2]; // We only need the rack type for the colouring
   let htmlRackDetailsDeviceList = formatRackDetailsDeviceList(rackId, rackDetailsDeviceList);
 
@@ -74,7 +75,13 @@ function appendRackDetailsBox(roomId, rackId, rackIdElement, rackDetailsDeviceLi
 
   for (let i = 0; i < rackDetailsDeviceList.length; i++) {
     addLineHighlightHoverFunction(rackDetailsDeviceList[i]);
+    document.getElementById(rackDetailsDeviceList[i]).addEventListener("mouseup", function(e){
+      toggleConnections(rackDetailsDeviceList[i], e.which);
+    });
   }
+  document.getElementById("close-"+rackId).addEventListener("mouseup", function(e){
+    toggleRackDetails(rackId, e.which);
+  });
 }
 
 
@@ -84,7 +91,7 @@ function formatRackDetailsDeviceList(rackId, devices) {
   if (devices) {
     for (let i = 0; i < devices.length; i++) {
       htmlDevicesList +=
-        "<div class='rackDetailsDevice' id='" + devices[i] + "' onmouseup=\"toggleConnections('" + devices[i] + "')\">" +
+        "<div class='rackDetailsDevice' id='" + devices[i] + "'>" +
           "<div class='rackDetailsDeviceText'>" + devices[i] + "<span class='rackDetailsDeviceRackUnit'>[" + devicesInfo[devices[i]].rack_unit + "]</span></div>" +
         "</div>";
     }
@@ -100,11 +107,11 @@ function formatRackDetailsDeviceList(rackId, devices) {
   In order to apply a real positioning, we need to scale the container to 1, set the position, and scale the container to its original scale.
 */
 function setPositionRackDetails(rackIdElement, rackIdDetailsElement) {
-  let containerScale = document.getElementById("zoomSlider").value;
-  applyZoomToRepresentation(1);
+  let matrix = $("#container").panzoom("getMatrix");
+  $("#container").panzoom("setMatrix", [ 1, matrix[1], matrix[2], 1, matrix[4], matrix[5]]);
   rackIdDetailsElement.css("left", rackIdElement.offset().left - $("#roomsContainer").offset().left + rackIdElement.width() + 16 + "px");
   rackIdDetailsElement.css("top", rackIdElement.offset().top - $("#roomsContainer").offset().top - 16 + "px");
-  applyZoomToRepresentation(containerScale);
+  $("#container").panzoom("setMatrix", matrix);
 }
 
 

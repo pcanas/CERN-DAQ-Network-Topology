@@ -5,7 +5,9 @@
 #roomMenu {
   display: flex;
   justify-content: space-around; /* We want the elements to space equally around all the document */
-  margin: 100px auto 80px auto;
+  margin: 100px auto 50px auto;
+  cursor: grab;
+  cursor: -webkit-grab;
 }
 
 .room-menu-element {

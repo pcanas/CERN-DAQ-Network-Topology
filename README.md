@@ -13,7 +13,7 @@ The main motivations to create this app are:
 * To provide a more specific visualization tool for the DAQ team, also including the connections between devices.
 
 Technologies used in the development of the application are:
-* Front-end: HTML, CSS and JS. Frameworks include jQuery and jsPlumb
+* Front-end: HTML, CSS and JS. Frameworks include jQuery, jsPlumb and Panzoom
 * Back-end: Django and Tastypie
 
 The two main files users should look at to configure the applications are:
@@ -30,10 +30,14 @@ We underline some of the main improvements that future developers could work on:
   * Will not depend on jsPlumb any more (bad documented library)
   * Will reduce the performance issues when we have hundreds of connections at the same time
 * Implement our own dragging function:
-  * Will solve some performance issues
+  * Solve the dragging issue for rooms when they are scaled
+  * Will solve some performance issues with jQuery dragging
 * Make a dashline for connections that are going to rooms which are hidden by colliding with other rooms
 * Solve issues with label generation:
   * Include a list of interfaces when the device is connected by more than 1 interface
   * Include a list of devices when a the rack details box is hidden and several connections go to the rack
 * Make the page printable so that users can save representations of the room for their records
 * Increase support to other browsers (currently Firefox and Chrome).
+
+<br />
+For any further enquiries, you can contact me at: :email: pablocanas97@gmail.com
