@@ -24,6 +24,7 @@ css/config.css
 In those files you can configure the rooms and the basic styling of the app
 
 <br />
+
 ### Possible improvements for the app
 
 We underline some of the main improvements that future developers could work on:
@@ -41,4 +42,5 @@ We underline some of the main improvements that future developers could work on:
 * Increase support to other browsers (currently Firefox and Chrome).
 
 <br />
+
 For any further enquiries, you can contact me at: pablocanas97@gmail.com
