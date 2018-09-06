@@ -24,7 +24,8 @@ css/config.css
 In those files you can configure the rooms and the basic styling of the app
 
 <br />
-## Possible improvements for the app
+### Possible improvements for the app
+
 We underline some of the main improvements that future developers could work on:
 * Implement our own connections generator:
   * Will not depend on jsPlumb any more (bad documented library)
